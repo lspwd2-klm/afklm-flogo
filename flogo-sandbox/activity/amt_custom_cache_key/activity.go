@@ -2,7 +2,6 @@ package amt_custom_cache_key
 
 import (
 	"bytes"
-	"fmt"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"reflect"
 )
@@ -33,30 +32,46 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 
 	key := "any"
 
-	fmt.Println("Trying to read the headers that should actually be cached")
+	//fmt.Println("Trying to read the headers that should actually be cached")
 	headersToCache := context.GetInput(InputCacheHeaders)
-	fmt.Println(headersToCache)
-	if headersToCache != nil && reflect.ValueOf(headersToCache).Kind() == reflect.Slice {
-		headerCacheArr := headersToCache.([]string)
+	//fmt.Println(headersToCache)
 
-		rawHeadersIn := context.GetInput(InputHeaders)
-		fmt.Println(rawHeadersIn)
-		if rawHeadersIn != nil && reflect.ValueOf(rawHeadersIn).Kind() == reflect.Map {
+	if headersToCache != nil && reflect.ValueOf(headersToCache).Kind() == reflect.Map {
+		headersCacheConfig := headersToCache.(map[string]interface{})
 
-			headersMap := rawHeadersIn.(map[string]string)
-			var sb bytes.Buffer
+		var headerArr []interface{}
+		// The object should contain a field called "headers"
+		headerArrRaw, headerArrPreset := headersCacheConfig["headers"]
+		if headerArrPreset {
+			headerArr = headerArrRaw.([]interface{})
 
-			for _, header := range headerCacheArr {
-				sb.WriteString("/")
-				passedHeader, present := headersMap[header]
-				if !present {
-					passedHeader = "*"
+			rawHeadersIn := context.GetInput(InputHeaders)
+			//fmt.Println(rawHeadersIn)
+			if rawHeadersIn != nil && reflect.ValueOf(rawHeadersIn).Kind() == reflect.Map {
+
+				headersMap := rawHeadersIn.(map[string]string)
+				var sb bytes.Buffer
+
+				for _, headerKey := range headerArr {
+					//fmt.Println(headerKey)
+
+					passedHeader, present := headersMap[headerKey.(string)]
+					//fmt.Println(passedHeader)
+
+					var delta string
+
+					if present {
+						delta = passedHeader
+					} else {
+						delta = "*"
+					}
+
+					sb.WriteString("/")
+					sb.WriteString(delta)
 				}
 
-				sb.WriteString(passedHeader)
+				key = sb.String()
 			}
-
-			key = sb.String()
 		}
 	}
 
