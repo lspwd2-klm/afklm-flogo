@@ -2,6 +2,7 @@ package amt_custom_cache_key
 
 import (
 	"bytes"
+	"fmt"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"reflect"
 )
@@ -33,10 +34,12 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	key := "any"
 
 	headersToCache := context.GetInput(InputCacheHeaders)
+	fmt.Println(headersToCache)
 	if headersToCache != nil && reflect.ValueOf(headersToCache).Kind() == reflect.Slice {
 		headerCacheArr := headersToCache.([]string)
 
 		rawHeadersIn := context.GetInput(InputHeaders)
+		fmt.Println(rawHeadersIn)
 		if rawHeadersIn != nil && reflect.ValueOf(rawHeadersIn).Kind() == reflect.Map {
 
 			headersMap := rawHeadersIn.(map[string]string)
