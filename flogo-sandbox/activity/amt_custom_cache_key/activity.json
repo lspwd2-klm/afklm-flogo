@@ -9,7 +9,7 @@
   "inputs":[
     {
       "name": "CacheHeaders",
-      "type": "array",
+      "type": "object",
       "required": true
     },
     {
