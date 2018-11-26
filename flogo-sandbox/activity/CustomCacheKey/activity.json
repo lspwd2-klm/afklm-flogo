@@ -2,8 +2,9 @@
   "name": "CustomCacheKey",
   "version": "0.0.1",
   "type": "flogo:activity",
-  "description": "Calculates the custom activity key from the list of headers",
-  "author": "Aleks Yanchuk <aliaksei.yanchuk@klm.com>",
+  "ref": "github.com/lspwd2-klm/afklm-flogo/tree/master/flogo-sandbox/activity/CustomCacheKey",
+  "description": "Calculates the activity key where a cached response to this key could be found.",
+  "author": "Aleks Yanchuk",
   "inputs":[
     {
       "name": "CacheHeaders",
