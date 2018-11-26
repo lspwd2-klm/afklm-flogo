@@ -1,4 +1,4 @@
-package CustomCacheKey
+package amt_custom_cache_key
 
 import (
 	"fmt"
