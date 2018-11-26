@@ -1,0 +1,23 @@
+{
+  "name": "CustomCacheKey",
+  "version": "0.0.1",
+  "type": "flogo:activity",
+  "description": "Calculates the custom activity key from the list of headers",
+  "author": "Aleks Yanchuk <aliaksei.yanchuk@klm.com>",
+  "inputs":[
+    {
+      "name": "CacheHeaders",
+      "type": "array"
+    },
+    {
+      "name": "headers_in",
+      "type": "params"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CacheKey",
+      "type": "string"
+    }
+  ]
+}
