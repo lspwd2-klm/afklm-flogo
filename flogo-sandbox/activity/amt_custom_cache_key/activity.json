@@ -1,8 +1,8 @@
 {
-  "name": "CustomCacheKey",
+  "name": "AMT Custom Cache Key",
   "version": "0.0.1",
   "type": "flogo:activity",
-  "ref": "github.com/lspwd2-klm/afklm-flogo/tree/master/flogo-sandbox/activity/CustomCacheKey",
+  "ref": "github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/activity/amt_custom_cache_key",
   "description": "Calculates the activity key where a cached response to this key could be found.",
   "author": "Aleks Yanchuk",
   "inputs":[
