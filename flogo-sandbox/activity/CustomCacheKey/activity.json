@@ -8,11 +8,13 @@
   "inputs":[
     {
       "name": "CacheHeaders",
-      "type": "array"
+      "type": "array",
+      "required": true
     },
     {
       "name": "headers_in",
-      "type": "params"
+      "type": "params",
+      "required": true
     }
   ],
   "outputs": [
