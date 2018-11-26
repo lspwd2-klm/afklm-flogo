@@ -33,6 +33,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 
 	key := "any"
 
+	fmt.Println("Trying to read the headers that should actually be cached")
 	headersToCache := context.GetInput(InputCacheHeaders)
 	fmt.Println(headersToCache)
 	if headersToCache != nil && reflect.ValueOf(headersToCache).Kind() == reflect.Slice {
