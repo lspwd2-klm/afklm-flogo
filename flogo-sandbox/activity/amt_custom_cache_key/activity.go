@@ -1,9 +1,9 @@
 package amt_custom_cache_key
 
 import (
+	"bytes"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"reflect"
-	"strings"
 )
 
 const (
@@ -40,7 +40,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 		if rawHeadersIn != nil && reflect.ValueOf(rawHeadersIn).Kind() == reflect.Map {
 
 			headersMap := rawHeadersIn.(map[string]string)
-			var sb strings.Builder
+			var sb bytes.Buffer
 
 			for _, header := range headerCacheArr {
 				sb.WriteString("/")
