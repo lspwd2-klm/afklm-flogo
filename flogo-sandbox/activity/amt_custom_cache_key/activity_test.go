@@ -1,6 +1,7 @@
 package amt_custom_cache_key
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/TIBCOSoftware/flogo-contrib/action/flow/test"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
@@ -45,9 +46,19 @@ func TestCreatingOnFullConfig(t *testing.T) {
 	act := NewActivity(getActivityMetadata())
 	tc := test.NewTestActivityContext(getActivityMetadata())
 
-	tc.SetInput(InputCacheHeaders, []string{
-		"Accept", "AFKLM-Market", "Content-Type",
-	})
+	jsonText := "{\"headers\":[\"Accept\",\"AFKLM-Market\",\"AFKLM-Channel\"]}"
+
+	var jsObj interface{}
+
+	jsErr := json.Unmarshal([]byte(jsonText), &jsObj)
+	if jsErr != nil {
+		t.Error("Cannot parse JSON", jsErr)
+		t.Fail()
+	}
+
+	//fmt.Println(jsObj)
+	tc.SetInput(InputCacheHeaders, jsObj)
+
 	tc.SetInput(InputHeaders, map[string]string{
 		"Accept":       "application/json",
 		"Dummy":        "Dummy headers",
