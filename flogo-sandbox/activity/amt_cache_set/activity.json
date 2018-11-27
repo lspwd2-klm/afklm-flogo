@@ -1,0 +1,31 @@
+{
+  "name": "amt_cache_set",
+  "version": "0.0.1",
+  "title": "AMT cache response of the microservice",
+  "type": "flogo:activity",
+  "ref": "github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/activity/amt_cache_set",
+  "description": "activity description",
+  "author": "Your Name <you.name@example.org>",
+  "inputs":[
+    {
+      "name": "input",
+      "type": "string"
+    },
+    {
+      "name": "CacheBody",
+      "type": "any"
+    },
+    {
+      "name": "CacheHeaders",
+      "type": "parmas"
+    },
+    {
+      "name": "CacheCode",
+      "type": "integer",
+      "required": true
+    }
+  ],
+  "outputs": [
+
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "amt_cache_get",
+  "version": "0.0.1",
+  "title": "AMT Retrieve Cached Response",
+  "type": "flogo:activity",
+  "ref": "github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/activity/amt_cache_get",
+  "description": "activity description",
+  "author": "Your Name <you.name@example.org>",
+  "inputs":[
+    {
+      "name": "CacheKey",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "RedisHost",
+      "type": "string",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CacheBody",
+      "type": "any"
+    },
+    {
+      "name": "CacheHeaders",
+      "type": "parmas"
+    },
+    {
+      "name": "CacheCode",
+      "type": "integer"
+    },
+    {
+      "name": "Complete",
+      "type": "boolean"
+    }
+  ]
+}
