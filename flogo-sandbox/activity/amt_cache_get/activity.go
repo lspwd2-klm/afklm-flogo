@@ -2,7 +2,9 @@ package amt_cache_get
 
 import (
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"github.com/go-redis/redis"
+	"strconv"
 )
 
 const (
@@ -14,53 +16,78 @@ const (
 	CompleteOut     = "Complete"
 )
 
-var redisConnn *redis.Client
+var log = logger.GetLogger("amt-cache-get")
+var redisConn *redis.Client
 
-// MyActivity is a stub for your Activity implementation
-type MyActivity struct {
+// AmtCacheActivity is a stub for your Activity implementation
+type AmtCacheActivity struct {
 	metadata *activity.Metadata
 }
 
 // NewActivity creates a new activity
 func NewActivity(metadata *activity.Metadata) activity.Activity {
-	return &MyActivity{metadata: metadata}
+	return &AmtCacheActivity{metadata: metadata}
 }
 
 // Metadata implements activity.Activity.Metadata
-func (a *MyActivity) Metadata() *activity.Metadata {
+func (a *AmtCacheActivity) Metadata() *activity.Metadata {
 	return a.metadata
 }
 
+func (a *AmtCacheActivity) GetRedis(opts *redis.Options) *redis.Client {
+	if redisConn == nil {
+		redisConn = redis.NewClient(opts)
+	}
+
+	return redisConn
+}
+
 // Eval implements activity.Activity.Eval
-func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
+func (a *AmtCacheActivity) Eval(context activity.Context) (done bool, err error) {
 
 	// do eval
 
-	if redisConnn == nil {
-		redisConnn = redis.NewClient(&redis.Options{
-			Addr:     context.GetInput(HostName).(string),
-			Password: "",
-			DB:       0,
-		})
-	}
+	cl := a.GetRedis(&redis.Options{
+		Addr:     context.GetInput(HostName).(string),
+		Password: "",
+		DB:       0,
+	})
+
+	log.Info("Connected to Redis")
 
 	cacheKey := context.GetInput(CacheKey).(string)
-	codeKey := cacheKey + ".code"
-	headersKey := cacheKey + ".headers"
-	bodyKey := cacheKey + ".body"
+	codeKey := cacheKey + ":code"
+	headersKey := cacheKey + ":headers"
+	bodyKey := cacheKey + ":body"
 
-	cacheData := redisConnn.MGet(codeKey, headersKey, bodyKey).Val()
+	log.Info("Retrieving these keys:", codeKey, " ", headersKey, ", ", bodyKey)
 
+	cacheData := cl.MGet(codeKey, bodyKey).Val()
+	log.Info("Got length of data: ", len(cacheData))
 	respCode := 0
 
-	if cacheData[0] != nil {
-		respCode = cacheData[0].(int)
+	if len(cacheData) > 0 {
+		log.Info("Okay, we have some in cache data.")
+		if cacheData[0] != nil {
+			parsedCode, err := strconv.Atoi(cacheData[0].(string))
+			if err == nil {
+				respCode = parsedCode
+			}
+		}
+
+		log.Info("So, the response code is ", respCode)
+
+		context.SetOutput(CacheCodeOut, respCode)
+		context.SetOutput(CacheBodyOut, cacheData[1])
+
+		// Headers will require fetching the map
+		cachedHeaders := cl.HGetAll(headersKey).Val()
+		if cachedHeaders != nil {
+			context.SetOutput(CacheHeadersOut, cachedHeaders)
+		}
 	}
 
 	context.SetOutput(CompleteOut, respCode != 0)
-	context.SetOutput(CacheCodeOut, respCode)
-	context.SetOutput(CacheHeadersOut, cacheData[1])
-	context.SetOutput(CacheBodyOut, cacheData[2])
 
 	return true, nil
 }
