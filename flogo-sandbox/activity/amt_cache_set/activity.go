@@ -1,6 +1,8 @@
 package amt_cache_set
 
 import (
+	"encoding"
+	"encoding/json"
 	"fmt"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
@@ -90,7 +92,21 @@ func (a *AMTCacheSetActivity) Eval(context activity.Context) (done bool, err err
 	*/
 
 	if cacheBody != nil {
-		cl.Set(bodyKey, cacheBody, duration)
+		_, ok := cacheBody.(string)
+		if !ok {
+			_, ok = cacheBody.(encoding.BinaryMarshaler)
+			if !ok {
+				// Marshal the string.
+				strBody, encErr := json.Marshal(cacheBody)
+				if encErr != nil {
+					log.Error("Could not marshal JSON ", encErr)
+				} else {
+					cacheBody = string(strBody)
+				}
+			}
+		}
+		cmd := cl.Set(bodyKey, cacheBody, duration)
+		log.Info("Results of setting body: ", cmd.String())
 	}
 
 	cl.MSet(codeKey, codeValue, bodyKey, cacheBody)

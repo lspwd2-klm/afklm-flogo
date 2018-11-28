@@ -1,14 +1,18 @@
 {
   "name": "amt_cache_set",
   "version": "0.0.1",
-  "title": "AMT cache response of the microservice",
+  "title": "AMT cache response of a micro-service",
   "type": "flogo:activity",
   "ref": "github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/activity/amt_cache_set",
-  "description": "activity description",
-  "author": "Your Name <you.name@example.org>",
+  "description": "Save response in cache",
+  "author": "Aleks Yanchuk",
   "inputs":[
     {
-      "name": "input",
+      "name": "CacheDuration",
+      "type": "string"
+    },
+    {
+      "name": "CacheKey",
       "type": "string"
     },
     {
@@ -22,6 +26,11 @@
     {
       "name": "CacheCode",
       "type": "integer",
+      "required": true
+    },
+    {
+      "name": "RedisHost",
+      "type": "string",
       "required": true
     }
   ],
