@@ -9,19 +9,23 @@
   "inputs":[
     {
       "name": "CacheDuration",
-      "type": "string"
+      "type": "string",
+      "required": false
     },
     {
       "name": "CacheKey",
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     {
       "name": "CacheBody",
-      "type": "any"
+      "type": "any",
+      "required": false
     },
     {
       "name": "CacheHeaders",
-      "type": "params"
+      "type": "params",
+      "required": false
     },
     {
       "name": "CacheCode",
