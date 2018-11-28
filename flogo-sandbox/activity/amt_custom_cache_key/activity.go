@@ -3,6 +3,7 @@ package amt_custom_cache_key
 import (
 	"bytes"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"reflect"
 )
 
@@ -11,6 +12,8 @@ const (
 	InputCacheHeaders = "CacheHeaders"
 	InputHeaders      = "headers_in"
 )
+
+var log = logger.GetLogger("amt-custom-cache-key")
 
 // MyActivity is a stub for your Activity implementation
 type MyActivity struct {
@@ -46,6 +49,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 			headerArr = headerArrRaw.([]interface{})
 
 			rawHeadersIn := context.GetInput(InputHeaders)
+			log.Info("Received these headers: ", rawHeadersIn)
 			//fmt.Println(rawHeadersIn)
 			if rawHeadersIn != nil && reflect.ValueOf(rawHeadersIn).Kind() == reflect.Map {
 
@@ -62,7 +66,9 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 
 					if present {
 						delta = passedHeader
+						log.Info("Found required header ", headerKey, " = ", delta)
 					} else {
+						log.Info("Required header ", headerKey, " was not passed in this request.")
 						delta = "*"
 					}
 
