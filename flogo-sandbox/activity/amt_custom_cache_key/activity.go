@@ -5,6 +5,7 @@ import (
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"reflect"
+	"strings"
 )
 
 const (
@@ -53,13 +54,23 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 			//fmt.Println(rawHeadersIn)
 			if rawHeadersIn != nil && reflect.ValueOf(rawHeadersIn).Kind() == reflect.Map {
 
-				headersMap := rawHeadersIn.(map[string]string)
+				headersMap := make(map[string]string)
+
+				// Convert the headers to forced-lowercase.
+				strRawHeadersIn := rawHeadersIn.(map[string]string)
+				for key, val := range strRawHeadersIn {
+					headersMap[strings.ToLower(key)] = val
+				}
+
+				log.Info("Converted array of headers:")
+				log.Info(headersMap)
+
 				var sb bytes.Buffer
 
 				for _, headerKey := range headerArr {
 					//fmt.Println(headerKey)
 
-					passedHeader, present := headersMap[headerKey.(string)]
+					passedHeader, present := headersMap[strings.ToLower(headerKey.(string))]
 					//fmt.Println(passedHeader)
 
 					var delta string
