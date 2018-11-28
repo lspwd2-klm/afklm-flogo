@@ -39,6 +39,9 @@
     }
   ],
   "outputs": [
-
+    {
+      "name": "foo",
+      "type": "any"
+    }
   ]
 }
