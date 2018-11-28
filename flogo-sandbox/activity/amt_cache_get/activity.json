@@ -4,8 +4,8 @@
   "title": "AMT Retrieve Cached Response",
   "type": "flogo:activity",
   "ref": "github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/activity/amt_cache_get",
-  "description": "activity description",
-  "author": "Your Name <you.name@example.org>",
+  "description": "Loads proxied microservice response from cache",
+  "author": "Aleks Yanchuk",
   "inputs":[
     {
       "name": "CacheKey",
