@@ -82,7 +82,9 @@ func (a *AMTCacheSetActivity) Eval(context activity.Context) (done bool, err err
 	//headersValue := context.GetInput(CacheHeadersIn).(map[string]interface{})
 	cacheBody := context.GetInput(CacheBodyIn)
 
-	cl.Set(codeKey, codeValue, duration)
+	log.Info("Passing in duration=", duration)
+	codeSet := cl.Set(codeKey, codeValue, duration)
+	log.Info("Saved response code: ", codeSet.String())
 
 	/*
 		if headersValue != nil {
@@ -108,8 +110,6 @@ func (a *AMTCacheSetActivity) Eval(context activity.Context) (done bool, err err
 		cmd := cl.Set(bodyKey, cacheBody, duration)
 		log.Info("Results of setting body: ", cmd.String())
 	}
-
-	cl.MSet(codeKey, codeValue, bodyKey, cacheBody)
 
 	return true, nil
 }

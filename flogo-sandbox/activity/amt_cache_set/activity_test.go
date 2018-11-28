@@ -89,4 +89,9 @@ func TestSettingTheValue(t *testing.T) {
 	}
 
 	fmt.Println("Check that the keys are set in Redis")
+
+	amtAct := act.(*AMTCacheSetActivity)
+	cl := amtAct.GetRedis(nil)
+	fmt.Println(cl.TTL("MyWriteKey:body").String())
+	fmt.Println(cl.TTL("ref").String())
 }
