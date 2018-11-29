@@ -2,6 +2,7 @@ package amt_map
 
 import (
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
+	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
 
 const (
@@ -11,7 +12,7 @@ const (
 	MappedValueOut = "MappedValue"
 )
 
-//var log = logger.GetLogger("amt-custom-cache-key")
+var log = logger.GetLogger("amt-custom-cache-key")
 
 // AmtMap is a stub for your Activity implementation
 type AmtMap struct {
@@ -35,9 +36,15 @@ func (a *AmtMap) Eval(context activity.Context) (done bool, err error) {
 	inTable := context.GetInput(MappingTable).(map[string]string)
 	inKey := context.GetInput(InputKey).(string)
 
+	log.Info("Evaluating key ", inKey)
+
 	val, found := inTable[inKey]
 	if found {
 		context.SetOutput(MappedValueOut, val)
+		log.Info("Found key ", inKey, " in the table supplied.")
+	} else {
+		log.Info("Key ", inKey, " was not found in the supplied table")
+		log.Info(inTable)
 	}
 
 	context.SetOutput(MappedOut, found)
