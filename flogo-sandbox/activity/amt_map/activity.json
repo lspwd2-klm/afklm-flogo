@@ -1,0 +1,29 @@
+{
+  "name": "amt_map",
+  "version": "0.0.1",
+  "title": "AMT Map Value",
+  "type": "flogo:activity",
+  "ref": "github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/activity/amt_map",
+  "description": "Lookup an input",
+  "author": "Aleks Yanchuk",
+  "inputs":[
+    {
+      "name": "Key",
+      "type": "string"
+    },
+    {
+      "name": "MappingTable",
+      "type": "params"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "MappedValue",
+      "type": "string"
+    },
+    {
+      "name": "Mapped",
+      "type": "boolean"
+    }
+  ]
+}
