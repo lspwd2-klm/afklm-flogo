@@ -1,0 +1,31 @@
+{
+  "name": "sha256sig",
+  "version": "0.0.1",
+  "type": "flogo:activity",
+  "title": "AMT SHA56 for REST",
+  "description": "Computes SHA 256 Signature from given Mashery package key and secret",
+  "ref": "github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/activity/sha256sig",
+  "author": "Monika Tantia <Monika.Tantia@klm.com>",
+  "inputs": [
+    {
+      "name": "key",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "secret",
+      "type": "string",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "hex",
+      "type": "string"
+    },
+    {
+      "name": "base64",
+      "type": "string"
+    }
+  ]
+}
