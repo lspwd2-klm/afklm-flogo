@@ -1,0 +1,16 @@
+{
+  "a": false,
+  "b": 34,
+  "b1": 34.0,
+  "c": "to _REPL_ me",
+  "d": {
+    "e": "yes _REPL_ me",
+    "f": {
+      "G": "yes def _REPL_ me"
+    }
+  },
+  "g": [
+    "first _REPL_ me",
+    "second _REPL_ me"
+  ]
+}

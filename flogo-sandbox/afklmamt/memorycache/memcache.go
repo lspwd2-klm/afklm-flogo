@@ -13,9 +13,9 @@ type CachedObject struct {
 }
 
 type CachedHTTPResponse struct {
-	code    int
-	headers map[string]string
-	body    interface{}
+	Code    int
+	Headers map[string]string
+	Body    interface{}
 }
 
 var singletonCache map[string]CachedObject
@@ -37,12 +37,12 @@ func locateCache() map[string]CachedObject {
 	return singletonCache
 }
 
-func Get(key string) interface{} {
+func Get(key string) (interface{}, bool) {
 	cacheRec, ok := locateCache()[key]
 	if ok {
-		return cacheRec.value
+		return cacheRec.value, true
 	} else {
-		return nil
+		return nil, false
 	}
 }
 

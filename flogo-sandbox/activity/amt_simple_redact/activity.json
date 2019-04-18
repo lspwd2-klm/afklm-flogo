@@ -1,0 +1,32 @@
+{
+  "name": "amt_simple_redact",
+  "version": "0.0.1",
+  "title": "AMT simple redact",
+  "type": "flogo:activity",
+  "ref": "github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/activity/amt_simple_redact",
+  "description": "Performs simple redaction of values based on the supplied pattern and replacement",
+  "author": "Aleks Yanchuk",
+  "inputs":[
+    {
+      "name": "Pattern",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "Replacements",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "ObjectIn",
+      "type": "any",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "ObjectOut",
+      "type": "any"
+    }
+  ]
+}

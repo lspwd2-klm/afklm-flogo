@@ -1,0 +1,34 @@
+{
+  "name": "amt_memorycache_get",
+  "version": "0.0.1",
+  "title": "AMT retrieve in-memory cached response",
+  "type": "flogo:activity",
+  "ref": "github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/activity/amt_memorycache_get",
+  "description": "Loads proxied microservice response from singleton in-memory cache",
+  "author": "Aleks Yanchuk",
+  "inputs":[
+    {
+      "name": "CacheKey",
+      "type": "string",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "CacheBody",
+      "type": "any"
+    },
+    {
+      "name": "CacheHeaders",
+      "type": "params"
+    },
+    {
+      "name": "CacheCode",
+      "type": "integer"
+    },
+    {
+      "name": "Complete",
+      "type": "boolean"
+    }
+  ]
+}

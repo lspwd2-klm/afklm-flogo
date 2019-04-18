@@ -1,0 +1,38 @@
+{
+  "name": "amt_memorycache_set",
+  "version": "0.0.1",
+  "title": "AMT in-memory cacher",
+  "type": "flogo:activity",
+  "ref": "github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/activity/amt_inmemorycache_set",
+  "description": "Save response in the in-memory cache",
+  "author": "Aleks Yanchuk",
+  "inputs":[
+    {
+      "name": "CacheDuration",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "CacheKey",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "CacheBody",
+      "type": "any",
+      "required": false
+    },
+    {
+      "name": "CacheHeaders",
+      "type": "params",
+      "required": false
+    },
+    {
+      "name": "CacheCode",
+      "type": "integer",
+      "required": true
+    }
+  ],
+  "outputs": [
+  ]
+}
