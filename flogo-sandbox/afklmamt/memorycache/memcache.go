@@ -6,9 +6,10 @@ import (
 )
 
 type CachedObject struct {
-	created time.Time
-	expires time.Time
-	value   interface{}
+	created   time.Time
+	expires   time.Time
+	expirable bool
+	value     interface{}
 }
 
 type CachedHTTPResponse struct {
@@ -46,5 +47,6 @@ func Get(key string) interface{} {
 }
 
 func Set(key string, value interface{}) {
-	locateCache()[key] = CachedObject{time.Now(), nil, value}
+	now := time.Now()
+	locateCache()[key] = CachedObject{now, now, false, value}
 }
