@@ -8,11 +8,14 @@ import (
 )
 
 const (
-	CacheKey        = "CacheKey"
+	CacheKey       = "CacheKey"
+	StaleTolerance = "StaleTolerance"
+	// TODO: add the stale tolerance.
 	CacheBodyOut    = "CacheBody"
 	CacheHeadersOut = "CacheHeaders"
 	CacheCodeOut    = "CacheCode"
 	CompleteOut     = "Complete"
+	StaleOut        = "Stale"
 )
 
 var log = logger.GetLogger("amt-cache-get")

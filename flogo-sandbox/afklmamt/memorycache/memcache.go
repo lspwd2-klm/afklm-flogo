@@ -46,7 +46,15 @@ func Get(key string) (interface{}, bool) {
 	}
 }
 
-func Set(key string, value interface{}) {
+func Set(key string, value interface{}, ttl int) {
 	now := time.Now()
-	locateCache()[key] = CachedObject{now, now, false, value}
+	exp := time.Now()
+
+	expirable := ttl > 0
+	if expirable {
+		d := time.Second * time.Duration(ttl)
+		exp.Add(d)
+	}
+
+	locateCache()[key] = CachedObject{now, now, expirable, value}
 }

@@ -9,7 +9,7 @@
   "inputs":[
     {
       "name": "CacheDuration",
-      "type": "string",
+      "type": "integer",
       "required": false
     },
     {

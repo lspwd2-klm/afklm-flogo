@@ -3,7 +3,6 @@ package amt_memorycache_set
 import (
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
-	"github.com/go-redis/redis"
 	"github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/afklmamt/memorycache"
 )
 
@@ -16,8 +15,7 @@ const (
 	CacheCodeIn    = "CacheCode"
 )
 
-var redisConn *redis.Client
-var log = logger.GetLogger("amt-cache-get")
+var log = logger.GetLogger("amt_memorycache_set")
 
 // AMTCacheSetActivity is a stub for your Activity implementation
 type AMTMemoryCacheSetActivity struct {
@@ -41,8 +39,9 @@ func (a *AMTMemoryCacheSetActivity) Eval(context activity.Context) (done bool, e
 	cacheCode := context.GetInput(CacheCodeIn).(int)
 	cacheBody := context.GetInput(CacheBodyIn)
 	cacheHeaders := context.GetInput(CacheHeadersIn).(map[string]string)
+	cacheDuration := context.GetInput(DurationIn).(int)
 
-	memorychache.Set(cacheKey, memorychache.CachedHTTPResponse{cacheCode, cacheHeaders, cacheBody})
+	memorychache.Set(cacheKey, memorychache.CachedHTTPResponse{cacheCode, cacheHeaders, cacheBody}, cacheDuration)
 
 	return true, nil
 }

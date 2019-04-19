@@ -48,15 +48,16 @@ func TestSetting(t *testing.T) {
 	tc.SetInput(CacheCodeIn, 202)
 	tc.SetInput(CacheHeadersIn, nil)
 	tc.SetInput(CacheBodyIn, "Setting Value")
+	tc.SetInput(DurationIn, 600)
 
-	done, error := act.Eval(tc)
+	done, actErr := act.Eval(tc)
 	if !done {
 		t.Error("Activity must be completed")
 		t.Fail()
 	}
 
-	if error != nil {
-		t.Error("Activity must complete without an error")
+	if actErr != nil {
+		t.Error("Activity must complete without an actErr")
 		t.Fail()
 	}
 

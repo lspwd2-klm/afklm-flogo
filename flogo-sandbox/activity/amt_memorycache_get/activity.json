@@ -11,6 +11,11 @@
       "name": "CacheKey",
       "type": "string",
       "required": true
+    },
+    {
+      "name": "StaleTolerance",
+      "type": "integer",
+      "required": true
     }
   ],
   "outputs": [
@@ -28,6 +33,10 @@
     },
     {
       "name": "Complete",
+      "type": "boolean"
+    },
+    {
+      "name": "Stale",
       "type": "boolean"
     }
   ]
