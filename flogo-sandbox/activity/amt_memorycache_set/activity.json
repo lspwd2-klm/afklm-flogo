@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "title": "AMT in-memory cacher",
   "type": "flogo:activity",
-  "ref": "github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/activity/amt_inmemorycache_set",
+  "ref": "github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/activity/amt_memorycache_set",
   "description": "Save response in the in-memory cache",
   "author": "Aleks Yanchuk",
   "inputs":[
