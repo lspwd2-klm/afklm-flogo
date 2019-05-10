@@ -1,6 +1,7 @@
 package amt_memorycache_get
 
 import (
+	"fmt"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"github.com/go-redis/redis"
@@ -41,6 +42,8 @@ func (a *AmtMemoryCacheGetActivity) Eval(context activity.Context) (done bool, e
 
 	cacheKey := context.GetInput(CacheKey).(string)
 	obj_holder, found := memorychache.Get(cacheKey)
+
+	log.Info(fmt.Sprintf("Lookup for cache key %s is found: %b", cacheKey, found))
 
 	if found {
 		obj := obj_holder.(memorychache.CachedHTTPResponse)

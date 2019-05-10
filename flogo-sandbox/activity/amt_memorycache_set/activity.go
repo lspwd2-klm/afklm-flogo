@@ -1,6 +1,7 @@
 package amt_memorycache_set
 
 import (
+	"fmt"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/afklmamt/memorycache"
@@ -42,6 +43,8 @@ func (a *AMTMemoryCacheSetActivity) Eval(context activity.Context) (done bool, e
 	cacheDuration := context.GetInput(DurationIn).(int)
 
 	memorychache.Set(cacheKey, memorychache.CachedHTTPResponse{cacheCode, cacheHeaders, cacheBody}, cacheDuration)
+
+	log.Info(fmt.Sprintf("Set the value for key: %s", cacheKey))
 
 	return true, nil
 }
