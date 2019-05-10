@@ -1,0 +1,21 @@
+{
+  "name": "amt_flatten_map",
+  "version": "0.0.1",
+  "title": "AMT Flatten Map",
+  "type": "flogo:activity",
+  "ref": "github.com/lspwd2-klm/afklm-flogo/flogo-sandbox/activity/amt_flatten_map",
+  "description": "Flattens a map using keys in alphabetic order",
+  "author": "Aleks Yanchuk",
+  "inputs":[
+    {
+      "name": "InputMap",
+      "type": "params"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "OutputValue",
+      "type": "string"
+    }
+  ]
+}
