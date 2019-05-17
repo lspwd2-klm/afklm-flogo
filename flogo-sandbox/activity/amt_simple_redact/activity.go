@@ -1,9 +1,12 @@
 package amt_simple_redact
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"github.com/go-redis/redis"
+	"reflect"
 	"regexp"
 )
 
@@ -37,12 +40,14 @@ func redact(obj_in interface{}, p *regexp.Regexp, r string) interface{} {
 		return nil
 	} else if valInt, okInt := obj_in.(int64); okInt {
 		return valInt
-	} else if valInt, okInt := obj_in.(int32); okInt {
-		return valInt
+	} else if valInt32, okInt := obj_in.(int32); okInt {
+		return valInt32
 	} else if floatVal, okFloat := obj_in.(float64); okFloat {
 		return floatVal
-	} else if floatVal, okFloat := obj_in.(float32); okFloat {
-		return floatVal
+	} else if floatVal32, okFloat := obj_in.(float32); okFloat {
+		return floatVal32
+	} else if jsonNum, okJsonNum := obj_in.(json.Number); okJsonNum {
+		return jsonNum
 	} else if boolVal, okBool := obj_in.(bool); okBool {
 		return boolVal
 	} else if strVal, okStr := obj_in.(string); okStr {
@@ -52,7 +57,7 @@ func redact(obj_in interface{}, p *regexp.Regexp, r string) interface{} {
 	} else if arrVal, okArr := obj_in.([]interface{}); okArr {
 		return redact_array(arrVal, p, r)
 	} else {
-		return "---no-procedure---"
+		return fmt.Sprintf("---no-procedure-for-%s---", reflect.TypeOf(obj_in).String())
 	}
 }
 
