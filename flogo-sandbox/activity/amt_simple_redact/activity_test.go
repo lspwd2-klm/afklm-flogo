@@ -99,3 +99,35 @@ func TestRootArrayRedaction(t *testing.T) {
 
 	fmt.Print(out)
 }
+
+func TestRootArrayRedaction2(t *testing.T) {
+	var dat interface{}
+	byt, _ := ioutil.ReadFile("./complex2.json")
+
+	if err := json.Unmarshal(byt, &dat); err != nil {
+		t.Error(fmt.Sprintf("Could not read json %s", err))
+		t.Fail()
+	}
+
+	act := NewActivity(getActivityMetadata())
+	tc := test.NewTestActivityContext(getActivityMetadata())
+
+	tc.SetInput(ObjectIn, dat)
+	tc.SetInput(Pattern, "mega.secret.domain.com")
+	tc.SetInput(Replacements, "*****.com")
+
+	done, err := act.Eval(tc)
+	if !done {
+		t.Error("Should be done")
+		t.Fail()
+	}
+
+	if err != nil {
+		t.Error("Error not expected")
+		t.Fail()
+	}
+
+	out := tc.GetOutput(ObjectOut)
+
+	fmt.Print(out)
+}
