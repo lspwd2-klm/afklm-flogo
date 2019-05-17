@@ -37,7 +37,11 @@ func redact(obj_in interface{}, p *regexp.Regexp, r string) interface{} {
 		return nil
 	} else if valInt, okInt := obj_in.(int64); okInt {
 		return valInt
+	} else if valInt, okInt := obj_in.(int32); okInt {
+		return valInt
 	} else if floatVal, okFloat := obj_in.(float64); okFloat {
+		return floatVal
+	} else if floatVal, okFloat := obj_in.(float32); okFloat {
 		return floatVal
 	} else if boolVal, okBool := obj_in.(bool); okBool {
 		return boolVal
