@@ -33,7 +33,9 @@ func (a *AmtSimpleRedactActivity) Metadata() *activity.Metadata {
 }
 
 func redact(obj_in interface{}, p *regexp.Regexp, r string) interface{} {
-	if valInt, okInt := obj_in.(int64); okInt {
+	if obj_in == nil {
+		return nil
+	} else if valInt, okInt := obj_in.(int64); okInt {
 		return valInt
 	} else if floatVal, okFloat := obj_in.(float64); okFloat {
 		return floatVal
