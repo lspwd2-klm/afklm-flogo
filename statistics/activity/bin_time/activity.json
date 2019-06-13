@@ -1,0 +1,57 @@
+{
+  "name": "bin_time",
+  "version": "0.0.1",
+  "title": "AMT Time Binner",
+  "type": "flogo:activity",
+  "ref": "github.com/lspwd2-klm/afklm-flogo/statistics/activity/bin_time",
+  "description": "Lookup an input",
+  "author": "Aleks Yanchuk",
+  "inputs":[
+    {
+      "name": "json",
+      "type": "string"
+    },
+    {
+      "name": "timestamp",
+      "type": "string"
+    },
+    {
+      "name": "interval",
+      "type": "string"
+    },
+    {
+      "name": "intervalSpan",
+      "type": "string"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "anchor",
+      "type": "any"
+    },
+    {
+      "name": "type",
+      "type": "string"
+    },
+    {
+      "name": "index",
+      "type": "integer"
+    },
+    {
+      "name": "span",
+      "type": "any"
+    },
+    {
+      "name": "offset",
+      "type": "any"
+    },
+    {
+      "name": "start",
+      "type": "any"
+    },
+    {
+      "name": "end",
+      "type": "any"
+    }
+  ]
+}
