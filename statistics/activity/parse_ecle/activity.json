@@ -1,0 +1,160 @@
+{
+  "name": "parse_ecle",
+  "version": "0.0.1",
+  "title": "AMT ECLE Parser",
+  "type": "flogo:activity",
+  "ref": "github.com/lspwd2-klm/afklm-flogo/statistics/activity/parse_ecle",
+  "description": "Parses the ECLE string of Mashrey logs",
+  "author": "Aleks Yanchuk",
+  "inputs":[
+    {
+      "name": "input",
+      "type": "string"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "ecle",
+      "type": "any"
+    },
+    {
+      "name": "HostName",
+      "type": "string"
+    },
+    {
+      "name": "SourceIp",
+      "type": "string"
+    },
+    {
+      "name": "HttpMethod",
+      "type": "any"
+    },
+    {
+      "name": "RequestUUID",
+      "type": "any"
+    },
+    {
+      "name": "RequestURI",
+      "type": "any"
+    },
+    {
+      "name": "HttpVersion",
+      "type": "any"
+    },
+    {
+      "name": "Bytes",
+      "type": "any"
+    },
+    {
+      "name": "ResponseStatusCode",
+      "type": "any"
+    },
+    {
+      "name": "Referrer",
+      "type": "any"
+    },
+    {
+      "name": "UserAgent",
+      "type": "any"
+    },
+    {
+      "name": "RequestId",
+      "type": "any"
+    },
+    {
+      "name": "RequestTime",
+      "type": "any"
+    },
+    {
+      "name": "PackageKey",
+      "type": "any"
+    },
+    {
+      "name": "ServiceId",
+      "type": "any"
+    },
+    {
+      "name": "TrafficManagerName",
+      "type": "any"
+    },
+    {
+      "name": "APIMethodName",
+      "type": "any"
+    },
+    {
+      "name": "CacheHit",
+      "type": "any"
+    },
+    {
+      "name": "TrafficManagerErrorCode",
+      "type": "any"
+    },
+    {
+      "name": "TotalRequestTime",
+      "type": "any"
+    },
+    {
+      "name": "RemoteTotalTime",
+      "type": "any"
+    },
+    {
+      "name": "ConnectTime",
+      "type": "any"
+    },
+    {
+      "name": "PreTransferTime",
+      "type": "any"
+    },
+    {
+      "name": "AccessToken",
+      "type": "any"
+    },
+    {
+      "name": "SslEnabled",
+      "type": "any"
+    },
+    {
+      "name": "ActualQuota",
+      "type": "any"
+    },
+    {
+      "name": "ActualQPS",
+      "type": "any"
+    },
+    {
+      "name": "ClientTransferTime",
+      "type": "any"
+    },
+    {
+      "name": "ServiceName",
+      "type": "any"
+    },{
+      "name": "ResponseMessage",
+      "type": "any"
+    },
+    {
+      "name": "PlanName",
+      "type": "any"
+    },
+    {
+      "name": "PlanUUID",
+      "type": "any"
+    },
+    {
+      "name": "EndpointName",
+      "type": "any"
+    },
+    {
+      "name": "PackageName",
+      "type": "any"
+    },
+    {
+      "name": "PackageUUID",
+      "type": "any"
+    },
+    {
+      "name": "ServiceDefinitionEndpointUUID",
+      "type": "any"
+    }
+  ]
+}
