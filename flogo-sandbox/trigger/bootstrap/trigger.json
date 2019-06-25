@@ -1,0 +1,15 @@
+{
+  "name": "bootstrap",
+  "version": "0.0.1",
+  "type": "flogo:trigger",
+  "description": "Bootstrap trigger",
+  "author": "Aleks Yanchuk <aliaksei.yanchuk@klm.com>",
+  "settings":[
+  ],
+  "output": [
+  ],
+  "handler": {
+    "settings": [
+    ]
+  }
+}
