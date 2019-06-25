@@ -7,9 +7,17 @@
   "settings":[
   ],
   "output": [
+    {
+      "name": "message",
+      "type": "string"
+    }
   ],
   "handler": {
     "settings": [
+      {
+        "name": "parameters",
+        "type": "params"
+      }
     ]
   }
 }
