@@ -2,7 +2,7 @@
   "name": "Bootstrap",
   "version": "0.0.1",
   "type": "flogo:trigger",
-  "description": "Bootstrap trigger",
+  "description": "Trigger that executes the flow prior all other triggers will start.",
   "author": "Aleks Yanchuk <aliaksei.yanchuk@klm.com>",
   "settings":[
   ],
