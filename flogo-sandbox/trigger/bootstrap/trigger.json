@@ -1,5 +1,5 @@
 {
-  "name": "bootstrap",
+  "name": "Bootstrap",
   "version": "0.0.1",
   "type": "flogo:trigger",
   "description": "Bootstrap trigger",
